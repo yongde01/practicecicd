@@ -1,0 +1,27 @@
+name: deploy
+on: push
+jobs:
+    CopyRepository:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+    RunDependency:
+        runs-on: ubuntu-latest
+        steps: 
+            - run: npm install
+    RunLint:
+        runs-on: ubuntu-latest
+        steps:
+            - run: npm run lint
+    RunBuilt:
+        runs-on: ubuntu-latest
+        steps:
+            - run: npm run test
+    RunDeploy:
+        runs-on: ubuntu-latest
+        steps:
+            - run: echo "Deployed"
+
+
+
+
