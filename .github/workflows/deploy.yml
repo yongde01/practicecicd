@@ -1,15 +1,21 @@
 name: deploy
 on: push
 jobs:
-    CopyRepository:
+    cicd:
         runs-on: ubuntu-latest
         steps:
-            - name: CheckoutCode
-              uses: actions/checkout@v4 
-            - name: RunDependency
+            - name: checkoutrep
+              uses: actions/checkout@v4
+            - name: installDependency
               run: npm install
-
-
+            - name: runlint
+              run: npm run lint
+            - name: runtest
+              run: npm run test
+            - name: runbuild
+              run: npm run build
+            - name: runDeploy
+              run: echo "Deploy successfully"
 
 
 
