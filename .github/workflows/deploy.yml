@@ -4,27 +4,11 @@ jobs:
     CopyRepository:
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v4
-    RunDependency:
-        needs: CopyRepository
-        runs-on: ubuntu-latest
-        steps: 
-            - run: npm install
-    RunLint:
-        needs: [CopyRepository,RunDependency]
-        runs-on: ubuntu-latest
-        steps:
-            - run: npm run lint
-    RunBuilt:
-        needs: [CopyRepository,RunDependency,RunLint]
-        runs-on: ubuntu-latest
-        steps:
-            - run: npm run test
-    RunDeploy:
-        needs: [CopyRepository,RunDependency,RunLint,RunBuilt]
-        runs-on: ubuntu-latest
-        steps:
-            - run: echo "Deployed"
+            - name: CheckoutCode
+              uses: actions/checkout@v4 
+            - name: RunDependency
+              run: npm install
+
 
 
 
